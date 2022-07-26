@@ -52,9 +52,9 @@ int get_gyro_X()
 {
     uint16_t gyro_XH, gyro_XL, gyro_X;
 
-    gyro_XH = slave_read(MPU6050_ADDR, GYRO_XOUT_H);     
-    gyro_XL = slave_read(MPU6050_ADDR, GYRO_XOUT_L);
-    gyro_X = (gyro_XH << 8) + gyro_XL;
+    gyro_XH = slave_read(MPU6050_ADDR, GYRO_XOUT_H);    // reading the gyro X H value 
+    gyro_XL = slave_read(MPU6050_ADDR, GYRO_XOUT_L);    // reading the gyro X H value
+    gyro_X = (gyro_XH << 8) + gyro_XL;                  // left shift gyro X H by 8 bits and adding the gyro X L
     return (int)gyro_X;
 }
 
@@ -62,9 +62,9 @@ int get_gyro_Y()
 {
     uint16_t gyro_YH, gyro_YL, gyro_Y;
 
-    gyro_YH = slave_read(MPU6050_ADDR, GYRO_YOUT_H);
-    gyro_YL = slave_read(MPU6050_ADDR, GYRO_YOUT_L);
-    gyro_Y = (gyro_YH << 8) + gyro_YL;
+    gyro_YH = slave_read(MPU6050_ADDR, GYRO_YOUT_H);   // reading the gyro Y H value 
+    gyro_YL = slave_read(MPU6050_ADDR, GYRO_YOUT_L);    // reading the gyro Y H value
+    gyro_Y = (gyro_YH << 8) + gyro_YL;                   // left shift gyro Y H by 8 bits and adding the gyro Y L
     return (int)gyro_Y;
 }
 
@@ -72,9 +72,9 @@ int get_gyro_Z()
 {
     uint16_t gyro_ZH, gyro_ZL, gyro_Z;
 
-    gyro_ZH = slave_read(MPU6050_ADDR, GYRO_ZOUT_H);
-    gyro_ZL = slave_read(MPU6050_ADDR, GYRO_ZOUT_L);
-    gyro_Z = (gyro_ZH << 8) + gyro_ZL;
+    gyro_ZH = slave_read(MPU6050_ADDR, GYRO_ZOUT_H);   // reading the gyro Z H value 
+    gyro_ZL = slave_read(MPU6050_ADDR, GYRO_ZOUT_L);    // reading the gyro Z H value
+    gyro_Z = (gyro_ZH << 8) + gyro_ZL;                 // left shift gyro Z H by 8 bits and adding the gyro Z L
     return (int)gyro_Z;
 }
 void i2c_init()
