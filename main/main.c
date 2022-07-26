@@ -8,6 +8,7 @@
 
 void app_main(void)
 {
+    i2c_init();
     MPU6050_init();
     int ax, ay, az;
     int gx, gy, gz;

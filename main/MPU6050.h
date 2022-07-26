@@ -1,21 +1,21 @@
-#define	SMPLRT_DIV		0x19	
-#define	CONFIG			0x1A
-#define	GYRO_CONFIG		0x1B	
-#define	ACCEL_CONFIG	0x1C	
-#define	ACCEL_XOUT_H	0x3B	
-#define	ACCEL_XOUT_L	0x3C
-#define	ACCEL_YOUT_H	0x3D
-#define	ACCEL_YOUT_L	0x3E
-#define	ACCEL_ZOUT_H	0x3F
-#define	ACCEL_ZOUT_L	0x40
-#define	GYRO_XOUT_H		0x43
-#define	GYRO_XOUT_L		0x44	
-#define	GYRO_YOUT_H		0x45
-#define	GYRO_YOUT_L		0x46
-#define	GYRO_ZOUT_H		0x47
-#define	GYRO_ZOUT_L		0x48
-#define	PWR_MGMT_1		0x6B	
-#define	MPU6050_ADDR	0x68
+#define	SMPLRT_DIV		0x19	//Addr of SMPLRT_DIV Register
+#define	CONFIG			0x1A    //Addr of CONFIG Register
+#define	GYRO_CONFIG		0x1B	//Addr of GYRO_CONFIG Register
+#define	ACCEL_CONFIG	0x1C	//Addr of ACCEL_CONFIG Register
+#define	ACCEL_XOUT_H	0x3B	//Addr of ACCEL_XOUT_H Register
+#define	ACCEL_XOUT_L	0x3C    //Addr of ACCEL_XOUT_L Register
+#define	ACCEL_YOUT_H	0x3D    //Addr of ACCEL_YOUT_H Register
+#define	ACCEL_YOUT_L	0x3E    //Addr of ACCEL_YOUT_L Register
+#define	ACCEL_ZOUT_H	0x3F    //Addr of ACCEL_ZOUT_H Register
+#define	ACCEL_ZOUT_L	0x40    //Addr of ACCEL_ZOUT_L Register
+#define	GYRO_XOUT_H		0x43    //Addr of GYRO_XOUT_H Register
+#define	GYRO_XOUT_L		0x44	//Addr of GYRO_XOUT_L Register
+#define	GYRO_YOUT_H		0x45    //Addr of GYRO_YOUT_H Register
+#define	GYRO_YOUT_L		0x46    //Addr of GYRO_YOUT_L Register
+#define	GYRO_ZOUT_H		0x47    //Addr of GYRO_ZOUT_H Register
+#define	GYRO_ZOUT_L		0x48    //Addr of GYRO_ZOUT_L Register
+#define	PWR_MGMT_1		0x6B	//Addr of PWR_MGMT_1 Register
+#define	MPU6050_ADDR	0x68    //Addr of MPU6050_ADDR Register
 
 void MPU6050_init();
 int get_accX();

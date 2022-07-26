@@ -8,7 +8,6 @@ static gpio_num_t i2c_gpio_sda = 1;
 
 void MPU6050_init ()
 {
-    i2c_init();
     slave_write(MPU6050_ADDR, PWR_MGMT_1, 0x00);
     slave_write(MPU6050_ADDR, SMPLRT_DIV, 0x07);    //0x07 to the sampling frequency division register
     slave_write(MPU6050_ADDR, CONFIG, 0x07);
