@@ -4,12 +4,13 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "MPU6050.h"
+static gpio_num_t i2c_gpio_sda = 1;
 
 void MPU6050_init ()
 {
     i2c_init();
     slave_write(MPU6050_ADDR, PWR_MGMT_1, 0x00);
-    slave_write(MPU6050_ADDR, SMPLRT_DIV, 0x07);
+    slave_write(MPU6050_ADDR, SMPLRT_DIV, 0x07);    //0x07 to the sampling frequency division register
     slave_write(MPU6050_ADDR, CONFIG, 0x07);
     slave_write(MPU6050_ADDR, GYRO_CONFIG, 0x18);
     slave_write(MPU6050_ADDR, ACCEL_CONFIG, 0x01);
@@ -81,9 +82,9 @@ void i2c_init()
 int i2c_master_port = I2C_NUM_0;
 i2c_config_t conf = {
     .mode = I2C_MODE_MASTER,
-    .sda_io_num = GPIO_NUM_1,               // select the SDA Pin
+    .sda_io_num = GPIO_NUM_21,               // select the SDA Pin
     .sda_pullup_en = GPIO_PULLUP_ENABLE,
-    .scl_io_num = GPIO_NUM_21,                  // select the CLK Pin
+    .scl_io_num = GPIO_NUM_22,                  // select the CLK Pin
     .scl_pullup_en = GPIO_PULLUP_ENABLE,
     .master.clk_speed = 1000000,
 };
