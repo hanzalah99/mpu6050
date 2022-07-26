@@ -85,9 +85,9 @@ void i2c_init()
 int i2c_master_port = I2C_NUM_0;
 i2c_config_t conf = {
     .mode = I2C_MODE_MASTER,
-    .sda_io_num = GPIO_NUM_1,               // select GPIO specific to your project
+    .sda_io_num = GPIO_NUM_1,               // select the SDA Pin
     .sda_pullup_en = GPIO_PULLUP_ENABLE,
-    .scl_io_num = GPIO_NUM_21,                  // select GPIO specific to your project
+    .scl_io_num = GPIO_NUM_21,                  // select the CLK Pin
     .scl_pullup_en = GPIO_PULLUP_ENABLE,
     .master.clk_speed = 1000000,
 };
