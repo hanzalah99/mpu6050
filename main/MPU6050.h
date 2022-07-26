@@ -17,6 +17,9 @@
 #define	PWR_MGMT_1		0x6B	//Addr of PWR_MGMT_1 Register
 #define	MPU6050_ADDR	0x68    //Addr of MPU6050_ADDR Register
 
+#define AccAxis_Sensitive 16384
+#define GyroAxis_Sensitive (float)16.4
+
 void MPU6050_init();
 int get_accX();
 int get_accY();
