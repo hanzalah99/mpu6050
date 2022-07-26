@@ -9,9 +9,9 @@ static gpio_num_t i2c_gpio_sda = 1;
 void MPU6050_init ()
 {
     slave_write(MPU6050_ADDR, PWR_MGMT_1, 0x00);     // Clear sleep mode bit (6), enable all sensors 
-    slave_write(MPU6050_ADDR, SMPLRT_DIV, 0x07);    //0x07 to the sampling frequency division register
-    slave_write(MPU6050_ADDR, CONFIG, 0x07);
-    slave_write(MPU6050_ADDR, GYRO_CONFIG, 0x18);   // Set full scale range for the gyro
+    slave_write(MPU6050_ADDR, SMPLRT_DIV, 0x00);    // Set the sampling rate to 1KHz
+    slave_write(MPU6050_ADDR, CONFIG, 0x01);        // Set the Gyro Fs to 1KHz
+    slave_write(MPU6050_ADDR, GYRO_CONFIG, 0x18);   // Set full scale range for the gyro 250
     slave_write(MPU6050_ADDR, ACCEL_CONFIG, 0x00);  // Set accelerometer full-scale to 2g
  
 }
