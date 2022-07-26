@@ -1,2 +1,2 @@
-idf_component_register(SRCS "MPU6050.c"
+idf_component_register(SRCS "main.c" "MPU6050.c"
                     INCLUDE_DIRS ".")

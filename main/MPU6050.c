@@ -4,11 +4,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "MPU6050.h"
-void app_main(void)
-{
 
-
-}
 void MPU6050_init ()
 {
     i2c_init();

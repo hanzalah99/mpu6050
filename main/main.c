@@ -7,7 +7,6 @@
 #include "MPU6050.h"
 
 void app_main(void)
-
 {
     MPU6050_init();
     int ax, ay, az;
@@ -21,7 +20,6 @@ void app_main(void)
     ax = get_accX();
     ay = get_accY();
     az = get_accZ();
-
     // get Gyroscope raw data
     gx = get_gyro_X();
     gy = get_gyro_Y();
