@@ -10,8 +10,8 @@ void app_main(void)
 {
     i2c_init();
     MPU6050_init();
-    int ax, ay, az;
-    int gx, gy, gz;
+    float ax, ay, az;
+    float gx, gy, gz;
     double roll, pitch,yaw;
     double val = M_PI / 180;
     int a;
