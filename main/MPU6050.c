@@ -20,9 +20,9 @@ int get_accX()
 {
     uint16_t acc_XH, acc_XL, acc_X;
 
-    acc_XH = slave_read(MPU6050_ADDR, ACCEL_XOUT_H);
-    acc_XL = slave_read(MPU6050_ADDR, ACCEL_XOUT_L);
-    acc_X = (acc_XH << 8) + acc_XL;
+    acc_XH = slave_read(MPU6050_ADDR, ACCEL_XOUT_H);  // reading the acc X H value 
+    acc_XL = slave_read(MPU6050_ADDR, ACCEL_XOUT_L);  // reading the acc X L value
+    acc_X = (acc_XH << 8) + acc_XL;               // left shift acc X H by 8 bits and adding the acc X L
     return (int)acc_X;
 }
 
@@ -30,9 +30,9 @@ int get_accY()
 {
     uint16_t acc_YH, acc_YL, acc_Y;
 
-    acc_YH = slave_read(MPU6050_ADDR, ACCEL_YOUT_H);
-    acc_YL = slave_read(MPU6050_ADDR, ACCEL_YOUT_L);
-    acc_Y = (acc_YH << 8) + acc_YL;
+    acc_YH = slave_read(MPU6050_ADDR, ACCEL_YOUT_H);    // reading the acc Y H value 
+    acc_YL = slave_read(MPU6050_ADDR, ACCEL_YOUT_L);    // reading the acc Y L value
+    acc_Y = (acc_YH << 8) + acc_YL;                     // left shift acc Y H by 8 bits and adding the acc X L
     return (int)acc_Y;
     
 }
@@ -41,9 +41,9 @@ int get_accZ()
 {
     uint16_t acc_ZH, acc_ZL, acc_Z;
 
-    acc_ZH = slave_read(MPU6050_ADDR, ACCEL_ZOUT_H);
-    acc_ZL = slave_read(MPU6050_ADDR, ACCEL_ZOUT_L);
-    acc_Z = (acc_ZH << 8) + acc_ZL;
+    acc_ZH = slave_read(MPU6050_ADDR, ACCEL_ZOUT_H);    // reading the acc Z H value 
+    acc_ZL = slave_read(MPU6050_ADDR, ACCEL_ZOUT_L);     // reading the acc Z L value
+    acc_Z = (acc_ZH << 8) + acc_ZL;                      // left shift acc Z H by 8 bits and adding the acc X L
     return (int)acc_Z;
     
 }
@@ -52,7 +52,7 @@ int get_gyro_X()
 {
     uint16_t gyro_XH, gyro_XL, gyro_X;
 
-    gyro_XH = slave_read(MPU6050_ADDR, GYRO_XOUT_H);
+    gyro_XH = slave_read(MPU6050_ADDR, GYRO_XOUT_H);     
     gyro_XL = slave_read(MPU6050_ADDR, GYRO_XOUT_L);
     gyro_X = (gyro_XH << 8) + gyro_XL;
     return (int)gyro_X;
