@@ -4,7 +4,6 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "MPU6050.h"
-static gpio_num_t i2c_gpio_sda = 1;
 
 void MPU6050_init ()
 {
@@ -22,7 +21,7 @@ float get_accX()
 
     acc_XH = slave_read(MPU6050_ADDR, ACCEL_XOUT_H);  // reading the acc X H value 
     acc_XL = slave_read(MPU6050_ADDR, ACCEL_XOUT_L);  // reading the acc X L value
-    acc_X = (acc_XH << 8) + acc_XL;               // left shift acc X H by 8 bits and adding the acc X L
+    acc_X = (acc_XH << 8) + acc_XL;               // left shift acc X H by 8 bits and adding the acc Z L
     return (float)acc_X/AccAxis_Sensitive;
 }
 
@@ -32,7 +31,7 @@ float get_accY()
 
     acc_YH = slave_read(MPU6050_ADDR, ACCEL_YOUT_H);    // reading the acc Y H value 
     acc_YL = slave_read(MPU6050_ADDR, ACCEL_YOUT_L);    // reading the acc Y L value
-    acc_Y = (acc_YH << 8) + acc_YL;                     // left shift acc Y H by 8 bits and adding the acc X L
+    acc_Y = (acc_YH << 8) + acc_YL;                     // left shift acc Y H by 8 bits and adding the acc Z L
     return (float)acc_Y/AccAxis_Sensitive;
     
 }
@@ -43,7 +42,7 @@ float get_accZ()
 
     acc_ZH = slave_read(MPU6050_ADDR, ACCEL_ZOUT_H);    // reading the acc Z H value 
     acc_ZL = slave_read(MPU6050_ADDR, ACCEL_ZOUT_L);     // reading the acc Z L value
-    acc_Z = (acc_ZH << 8) + acc_ZL;                      // left shift acc Z H by 8 bits and adding the acc X L
+    acc_Z = (acc_ZH << 8) + acc_ZL;                      // left shift acc Z H by 8 bits and adding the acc Z L
     return (float)acc_Z/AccAxis_Sensitive;
     
 }
@@ -106,7 +105,7 @@ void slave_write(uint8_t slave_add, uint8_t reg_add, uint8_t data)              
     i2c_cmd_link_delete(write);
 }
 
-uint8_t slave_read(uint8_t slave_add, uint8_t reg_add)
+uint8_t slave_read(uint8_t slave_add, uint8_t reg_add)          //read from slave
 {
     uint8_t buf;
     i2c_cmd_handle_t read = i2c_cmd_link_create();
