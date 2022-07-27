@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 #include "driver/gpio.h"
 #include "driver/i2c.h"
 #include "freertos/FreeRTOS.h"
@@ -76,6 +77,25 @@ float get_gyro_Z()
     gyro_Z = (gyro_ZH << 8) + gyro_ZL;                 // left shift gyro Z H by 8 bits and adding the gyro Z L
     return (float)gyro_Z/GyroAxis_Sensitive;
 }
+
+float roll_func(float ax, float ay, float az)
+{
+    float calc_roll = 180 * atan (ay/sqrt(ax*ax + az*az))/M_PI;
+    return calc_roll;
+}
+
+float pitch_fucn(float ax, float ay, float az)
+{
+    float calc_pitch = 180 * atan (ax/sqrt(ay*ay + az*az))/M_PI;
+    return calc_pitch;
+}
+
+float yaw_fucn(float ax, float ay, float az)
+{
+    float calc_yaw = 180 * atan (ax/sqrt(ay*ay + az*az))/M_PI;
+    return calc_yaw;
+}
+
 void i2c_init()
 {
 int i2c_master_port = I2C_NUM_0;
@@ -101,7 +121,7 @@ void slave_write(uint8_t slave_add, uint8_t reg_add, uint8_t data)              
     i2c_master_write_byte(write, reg_add, 1);
     i2c_master_write_byte(write, data, 1);
     i2c_master_stop(write);
-    i2c_master_cmd_begin(I2C_NUM_0,write,100);
+    i2c_master_cmd_begin(I2C_NUM_0,write,10);
     i2c_cmd_link_delete(write);
 }
 
@@ -115,7 +135,7 @@ uint8_t slave_read(uint8_t slave_add, uint8_t reg_add)          //read from slav
     i2c_master_write_byte(read, (slave_add << 1) | I2C_MASTER_READ, 1);
     i2c_master_read_byte(read, &buf, 1);
     i2c_master_stop(read);
-    i2c_master_cmd_begin(I2C_NUM_0,read,100);
+    i2c_master_cmd_begin(I2C_NUM_0,read,10);
     i2c_cmd_link_delete(read);
     return buf;
 }
