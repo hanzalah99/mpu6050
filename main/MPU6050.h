@@ -19,6 +19,7 @@
 
 #define AccAxis_Sensitive 16384
 #define GyroAxis_Sensitive (float)16.4
+#define 
 
 void MPU6050_init();
 float get_accX();
@@ -27,6 +28,12 @@ float get_accZ();
 float get_gyro_X();
 float get_gyro_Y();
 float get_gyro_Z();
+
+float roll_func(float ax, float ay, float az);
+float pitch_func(float ax, float ay, float az);
+float yaw_func(float ax, float ay, float az);
+
+float *quaternions(float roll, float pitch, float yaw);
 
 void i2c_init();
 void slave_write(uint8_t slave_add, uint8_t reg_add, uint8_t data);

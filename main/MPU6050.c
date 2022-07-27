@@ -96,6 +96,16 @@ float yaw_fucn(float ax, float ay, float az)
     return calc_yaw;
 }
 
+float *quaternions(float roll, float pitch, float yaw)
+{
+    static float q[4];
+    q[0] = sin(roll / 2) * cos(pitch / 2) * cos(yaw / 2) - cos(roll / 2) * sin(pitch / 2) * sin(yaw / 2);
+    q[1] = cos(roll / 2) * sin(pitch / 2) * cos(yaw / 2) + sin(roll / 2) * cos(pitch / 2) * sin(yaw / 2);
+    q[2] = cos(roll / 2) * cos(pitch / 2) * sin(yaw / 2) - sin(roll / 2) * sin(pitch / 2) * cos(yaw / 2);
+    q[3] = cos(roll / 2) * cos(pitch / 2) * cos(yaw / 2) + sin(roll / 2) * sin(pitch / 2) * sin(yaw / 2);
+    return q;
+}
+
 void i2c_init()
 {
 int i2c_master_port = I2C_NUM_0;

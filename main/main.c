@@ -12,32 +12,49 @@ void app_main(void)
     MPU6050_init();
     float ax, ay, az;
     float gx, gy, gz;
-    double roll, pitch,yaw;
-    double val = M_PI / 180;
-    double qx, qy, qz, qw;
+    float roll, pitch,yaw;
+    float roll_r, pitch_r, yaw_r;
+    float val = M_PI / 180;
+    float qx, qy, qz, qw;
+    float *array;
 
+    while(1)
+    {
     // get Accelaration raw data
     ax = get_accX();
     ay = get_accY();
     az = get_accZ();
+    printf("ax : %f ", ax);
+    printf("ay : %f ", ay);
+    printf("az : %f ", az);
+
     // get Gyroscope raw data
     gx = get_gyro_X();
     gy = get_gyro_Y();
     gz = get_gyro_Z();
+    printf("gx : %f \n", gx);
+    printf("gy : %f \n", gy);
+    printf("gz : %f \n", gz);
 
     // roll, pitch and yaw are the euler angles
-    roll = 180 * atan (ay/sqrt(ax*ax + az*az))/M_PI;
-    pitch = 180 * atan (ax/sqrt(ay*ay + az*az))/M_PI;
-    yaw = 180 * atan (az/sqrt(ax*ax + az*az))/M_PI;
+    roll = roll_fucn(ax, ay, az);
+    pitch = pitch_fucn(ax, ay, az);
+    yaw = yaw_func(ax, ay, az);
+    printf("roll : %f \n", roll);
+    printf("pitch : %f \n", pitch);
+    printf("yaw : %f \n", yaw);
 
     // Converting the euler angles to radians
-    roll=roll*val;
-    pitch= pitch*val;
-    yaw= yaw*val;
+    roll_r=roll*val;
+    pitch_r= pitch*val;
+    yaw_r= yaw*val;
 
     // calculating the angles of quaterinons from the euler angles
-    qx = sin(roll / 2) * cos(pitch / 2) * cos(yaw / 2) - cos(roll / 2) * sin(pitch / 2) * sin(yaw / 2);
-    qy = cos(roll / 2) * sin(pitch / 2) * cos(yaw / 2) + sin(roll / 2) * cos(pitch / 2) * sin(yaw / 2);
-    qz = cos(roll / 2) * cos(pitch / 2) * sin(yaw / 2) - sin(roll / 2) * sin(pitch / 2) * cos(yaw / 2);
-    qw = cos(roll / 2) * cos(pitch / 2) * cos(yaw / 2) + sin(roll / 2) * sin(pitch / 2) * sin(yaw / 2);
+    array = quaternions(roll_r, pitch_r, yaw_r);
+
+    for (int i = 0; i < 4;i++)
+    {
+        printf("q[%d] : %f \n",i, array[i]);
+    }
+    }
     }
