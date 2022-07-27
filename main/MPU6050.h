@@ -21,12 +21,12 @@
 #define GyroAxis_Sensitive (float)16.4
 
 void MPU6050_init();
-int get_accX();
-int get_accY();
-int get_accZ();
-int get_gyro_X();
-int get_gyro_Y();
-int get_gyro_Z();
+float get_accX();
+float get_accY();
+float get_accZ();
+float get_gyro_X();
+float get_gyro_Y();
+float get_gyro_Z();
 
 void i2c_init();
 void slave_write(uint8_t slave_add, uint8_t reg_add, uint8_t data);

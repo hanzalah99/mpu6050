@@ -11,71 +11,71 @@ void MPU6050_init ()
     slave_write(MPU6050_ADDR, PWR_MGMT_1, 0x00);     // Clear sleep mode bit (6), enable all sensors 
     slave_write(MPU6050_ADDR, SMPLRT_DIV, 0x00);    // Set the sampling rate to 1KHz
     slave_write(MPU6050_ADDR, CONFIG, 0x01);        // Set the Gyro Fs to 1KHz
-    slave_write(MPU6050_ADDR, GYRO_CONFIG, 0x18);   // Set full scale range for the gyro 250
+    slave_write(MPU6050_ADDR, GYRO_CONFIG, 0x18);   // Set full scale range for the gyro 2000
     slave_write(MPU6050_ADDR, ACCEL_CONFIG, 0x00);  // Set accelerometer full-scale to 2g
  
 }
  
-int get_accX()
+float get_accX()
 {
     uint16_t acc_XH, acc_XL, acc_X;
 
     acc_XH = slave_read(MPU6050_ADDR, ACCEL_XOUT_H);  // reading the acc X H value 
     acc_XL = slave_read(MPU6050_ADDR, ACCEL_XOUT_L);  // reading the acc X L value
     acc_X = (acc_XH << 8) + acc_XL;               // left shift acc X H by 8 bits and adding the acc X L
-    return (int)acc_X;
+    return (float)acc_X/AccAxis_Sensitive;
 }
 
-int get_accY()
+float get_accY()
 {
     uint16_t acc_YH, acc_YL, acc_Y;
 
     acc_YH = slave_read(MPU6050_ADDR, ACCEL_YOUT_H);    // reading the acc Y H value 
     acc_YL = slave_read(MPU6050_ADDR, ACCEL_YOUT_L);    // reading the acc Y L value
     acc_Y = (acc_YH << 8) + acc_YL;                     // left shift acc Y H by 8 bits and adding the acc X L
-    return (int)acc_Y;
+    return (float)acc_Y/AccAxis_Sensitive;
     
 }
 
-int get_accZ()
+float get_accZ()
 {
     uint16_t acc_ZH, acc_ZL, acc_Z;
 
     acc_ZH = slave_read(MPU6050_ADDR, ACCEL_ZOUT_H);    // reading the acc Z H value 
     acc_ZL = slave_read(MPU6050_ADDR, ACCEL_ZOUT_L);     // reading the acc Z L value
     acc_Z = (acc_ZH << 8) + acc_ZL;                      // left shift acc Z H by 8 bits and adding the acc X L
-    return (int)acc_Z;
+    return (float)acc_Z/AccAxis_Sensitive;
     
 }
 
-int get_gyro_X()
+float get_gyro_X()
 {
     uint16_t gyro_XH, gyro_XL, gyro_X;
 
     gyro_XH = slave_read(MPU6050_ADDR, GYRO_XOUT_H);    // reading the gyro X H value 
     gyro_XL = slave_read(MPU6050_ADDR, GYRO_XOUT_L);    // reading the gyro X H value
     gyro_X = (gyro_XH << 8) + gyro_XL;                  // left shift gyro X H by 8 bits and adding the gyro X L
-    return (int)gyro_X;
+    return (float)gyro_X/GyroAxis_Sensitive;
 }
 
-int get_gyro_Y()
+float get_gyro_Y()
 {
     uint16_t gyro_YH, gyro_YL, gyro_Y;
 
     gyro_YH = slave_read(MPU6050_ADDR, GYRO_YOUT_H);   // reading the gyro Y H value 
     gyro_YL = slave_read(MPU6050_ADDR, GYRO_YOUT_L);    // reading the gyro Y H value
     gyro_Y = (gyro_YH << 8) + gyro_YL;                   // left shift gyro Y H by 8 bits and adding the gyro Y L
-    return (int)gyro_Y;
+    return (float)gyro_Y/GyroAxis_Sensitive;
 }
 
-int get_gyro_Z()
+float get_gyro_Z()
 {
     uint16_t gyro_ZH, gyro_ZL, gyro_Z;
 
     gyro_ZH = slave_read(MPU6050_ADDR, GYRO_ZOUT_H);   // reading the gyro Z H value 
     gyro_ZL = slave_read(MPU6050_ADDR, GYRO_ZOUT_L);    // reading the gyro Z H value
     gyro_Z = (gyro_ZH << 8) + gyro_ZL;                 // left shift gyro Z H by 8 bits and adding the gyro Z L
-    return (int)gyro_Z;
+    return (float)gyro_Z/GyroAxis_Sensitive;
 }
 void i2c_init()
 {
