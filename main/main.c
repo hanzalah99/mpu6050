@@ -52,9 +52,9 @@ void app_main(void)
     // calculating the angles of quaterinons from the euler angles
     array = quaternions(roll_r, pitch_r, yaw_r);
 
-    for (int i = 0; i < 4;i++)
-    {
-        printf("q[%d] : %f \n",i, array[i]);
-    }
+        for (int i = 0; i < 4;i++)
+        {
+            printf("q[%d] : %f \n",i, array[i]);
+        }
     }
     }
