@@ -21,7 +21,7 @@ float get_accX()
 
     acc_XH = slave_read(MPU6050_ADDR, ACCEL_XOUT_H);  // reading the acc X H value 
     acc_XL = slave_read(MPU6050_ADDR, ACCEL_XOUT_L);  // reading the acc X L value
-    acc_X = (acc_XH << 8) + acc_XL;               // left shift acc X H by 8 bits and adding the acc Z L
+    acc_X = (acc_XH << 8) + acc_XL;               // left shift acc X H by 8 bits and adding the acc X L
     return (float)acc_X/AccAxis_Sensitive;
 }
 
@@ -31,7 +31,7 @@ float get_accY()
 
     acc_YH = slave_read(MPU6050_ADDR, ACCEL_YOUT_H);    // reading the acc Y H value 
     acc_YL = slave_read(MPU6050_ADDR, ACCEL_YOUT_L);    // reading the acc Y L value
-    acc_Y = (acc_YH << 8) + acc_YL;                     // left shift acc Y H by 8 bits and adding the acc Z L
+    acc_Y = (acc_YH << 8) + acc_YL;                     // left shift acc Y H by 8 bits and adding the acc Y L
     return (float)acc_Y/AccAxis_Sensitive;
     
 }
