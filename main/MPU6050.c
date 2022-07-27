@@ -92,7 +92,7 @@ float pitch_fucn(float ax, float ay, float az)
 
 float yaw_fucn(float ax, float ay, float az)
 {
-    float calc_yaw = 180 * atan (ax/sqrt(ay*ay + az*az))/M_PI;
+    float calc_yaw = 180 * atan (az/sqrt(ax*ax+ az*az))/M_PI;
     return calc_yaw;
 }
 
