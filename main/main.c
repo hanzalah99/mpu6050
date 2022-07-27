@@ -24,25 +24,25 @@ void app_main(void)
     ax = get_accX();
     ay = get_accY();
     az = get_accZ();
-    printf("ax : %f ", ax);
-    printf("ay : %f ", ay);
-    printf("az : %f ", az);
+    //printf("ax : %f ", ax);
+    //printf("ay : %f ", ay);
+    //printf("az : %f ", az);
 
     // get Gyroscope raw data
     gx = get_gyro_X();
     gy = get_gyro_Y();
     gz = get_gyro_Z();
-    printf("gx : %f \n", gx);
-    printf("gy : %f \n", gy);
-    printf("gz : %f \n", gz);
+    //printf("gx : %f \n", gx);
+    //printf("gy : %f \n", gy);
+    //printf("gz : %f \n", gz);
 
     // roll, pitch and yaw are the euler angles
     roll = roll_func(ax, ay, az);
     pitch = pitch_func(ax, ay, az);
     yaw = yaw_func(ax, ay, az);
-    printf("roll : %f \n", roll);
-    printf("pitch : %f \n", pitch);
-    printf("yaw : %f \n", yaw);
+    //printf("roll : %f \n", roll);
+    //printf("pitch : %f \n", pitch);
+    //printf("yaw : %f \n", yaw);
 
     // Converting the euler angles to radians
     roll_r=roll*val;
@@ -52,9 +52,9 @@ void app_main(void)
     // calculating the angles of quaterinons from the euler angles
     array = quaternions(roll_r, pitch_r, yaw_r);
 
-        for (int i = 0; i < 4;i++)
-        {
-            printf("q[%d] : %f \n",i, array[i]);
-        }
+      //  for (int i = 0; i < 4;i++)
+    // {
+      //      printf("q[%d] : %f \n",i, array[i]);
+        //}
     }
     }
