@@ -37,8 +37,8 @@ void app_main(void)
     printf("gz : %f \n", gz);
 
     // roll, pitch and yaw are the euler angles
-    roll = roll_fucn(ax, ay, az);
-    pitch = pitch_fucn(ax, ay, az);
+    roll = roll_func(ax, ay, az);
+    pitch = pitch_func(ax, ay, az);
     yaw = yaw_func(ax, ay, az);
     printf("roll : %f \n", roll);
     printf("pitch : %f \n", pitch);
