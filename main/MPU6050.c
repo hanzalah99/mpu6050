@@ -84,13 +84,13 @@ float roll_func(float ax, float ay, float az)
     return calc_roll;
 }
 
-float pitch_fucn(float ax, float ay, float az)
+float pitch_func(float ax, float ay, float az)
 {
     float calc_pitch = 180 * atan (ax/sqrt(ay*ay + az*az))/M_PI;
     return calc_pitch;
 }
 
-float yaw_fucn(float ax, float ay, float az)
+float yaw_func(float ax, float ay, float az)
 {
     float calc_yaw = 180 * atan (az/sqrt(ax*ax+ az*az))/M_PI;
     return calc_yaw;
