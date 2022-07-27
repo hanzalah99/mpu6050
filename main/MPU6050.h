@@ -19,7 +19,6 @@
 
 #define AccAxis_Sensitive 16384
 #define GyroAxis_Sensitive (float)16.4
-#define 
 
 void MPU6050_init();
 float get_accX();
