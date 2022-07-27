@@ -14,7 +14,6 @@ void app_main(void)
     float gx, gy, gz;
     double roll, pitch,yaw;
     double val = M_PI / 180;
-    int a;
     double qx, qy, qz, qw;
 
     // get Accelaration raw data
