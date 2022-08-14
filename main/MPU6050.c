@@ -18,64 +18,64 @@ void MPU6050_init ()
  
 float get_accX()
 {
-    uint16_t acc_XH, acc_XL, acc_X;
-
-    acc_XH = slave_read(MPU6050_ADDR, ACCEL_XOUT_H);  // reading the acc X H value 
-    acc_XL = slave_read(MPU6050_ADDR, ACCEL_XOUT_L);  // reading the acc X L value
-    acc_X = (acc_XH << 8) + acc_XL;               // left shift acc X H by 8 bits and adding the acc X L
-    return (float)acc_X/AccAxis_Sensitive;
+     uint8_t r[0];
+    slave_read(MPU6050_ADDR, ACCEL_XOUT_H, r, 2);
+    short accx = r[0] << 8 | r[1];                     // left shift acc X H by 8 bits and adding the gyro Z L
+    return (float)accx / AccAxis_Sensitive;
 }
 
 float get_accY()
 {
-    uint16_t acc_YH, acc_YL, acc_Y;
+    uint16_t acc_XH, acc_XL, acc_X;
 
-    acc_YH = slave_read(MPU6050_ADDR, ACCEL_YOUT_H);    // reading the acc Y H value 
-    acc_YL = slave_read(MPU6050_ADDR, ACCEL_YOUT_L);    // reading the acc Y L value
-    acc_Y = (acc_YH << 8) + acc_YL;                     // left shift acc Y H by 8 bits and adding the acc Y L
-    return (float)acc_Y/AccAxis_Sensitive;
+    uint8_t r[0];
+    slave_read(MPU6050_ADDR, ACCEL_YOUT_H, r, 2);
+    short accy = r[0] << 8 | r[1];                     // left shift acc Y H by 8 bits and adding the gyro Z L
+    return (float)accy / AccAxis_Sensitive;
     
 }
 
 float get_accZ()
 {
-    uint16_t acc_ZH, acc_ZL, acc_Z;
-
-    acc_ZH = slave_read(MPU6050_ADDR, ACCEL_ZOUT_H);    // reading the acc Z H value 
-    acc_ZL = slave_read(MPU6050_ADDR, ACCEL_ZOUT_L);     // reading the acc Z L value
-    acc_Z = (acc_ZH << 8) + acc_ZL;                      // left shift acc Z H by 8 bits and adding the acc Z L
-    return (float)acc_Z/AccAxis_Sensitive;
+    uint8_t r[0];
+    slave_read(MPU6050_ADDR, ACCEL_ZOUT_H, r, 2);
+    short accz = r[0] << 8 | r[1];                     // left shift acc Z H by 8 bits and adding the gyro Z L
+    return (float)accz / AccAxis_Sensitive;
     
 }
 
 float get_gyro_X()
 {
+
+    uint8_t r[0];
+    slave_read(MPU6050_ADDR, GYRO_XOUT_H, r, 2);
+    short gyrox = r[0] << 8 | r[1];                     // left shift gyro X H by 8 bits and adding the gyro Z L
+    return (float)gyrox / GyroAxis_Sensitive;
     uint16_t gyro_XH, gyro_XL, gyro_X;
 
-    gyro_XH = slave_read(MPU6050_ADDR, GYRO_XOUT_H);    // reading the gyro X H value 
-    gyro_XL = slave_read(MPU6050_ADDR, GYRO_XOUT_L);    // reading the gyro X H value
-    gyro_X = (gyro_XH << 8) + gyro_XL;                  // left shift gyro X H by 8 bits and adding the gyro X L
-    return (float)gyro_X/GyroAxis_Sensitive;
+    
 }
 
 float get_gyro_Y()
 {
+
+    uint8_t r[0];
+    slave_read(MPU6050_ADDR, GYRO_YOUT_H, r, 2);
+    short gyroy = r[0] << 8 | r[1];                     // left shift gyro X H by 8 bits and adding the gyro Z L
+    return (float)gyroy / GyroAxis_Sensitive;
     uint16_t gyro_YH, gyro_YL, gyro_Y;
 
-    gyro_YH = slave_read(MPU6050_ADDR, GYRO_YOUT_H);   // reading the gyro Y H value 
-    gyro_YL = slave_read(MPU6050_ADDR, GYRO_YOUT_L);    // reading the gyro Y H value
-    gyro_Y = (gyro_YH << 8) + gyro_YL;                   // left shift gyro Y H by 8 bits and adding the gyro Y L
-    return (float)gyro_Y/GyroAxis_Sensitive;
+    
 }
 
 float get_gyro_Z()
 {
-    uint16_t gyro_ZH, gyro_ZL, gyro_Z;
 
-    gyro_ZH = slave_read(MPU6050_ADDR, GYRO_ZOUT_H);   // reading the gyro Z H value 
-    gyro_ZL = slave_read(MPU6050_ADDR, GYRO_ZOUT_L);    // reading the gyro Z H value
-    gyro_Z = (gyro_ZH << 8) + gyro_ZL;                 // left shift gyro Z H by 8 bits and adding the gyro Z L
-    return (float)gyro_Z/GyroAxis_Sensitive;
+    uint8_t r[0];
+    slave_read(MPU6050_ADDR, GYRO_ZOUT_H, r, 2);
+    short gyroz = r[0] << 8 | r[1];                     // left shift gyro Z H by 8 bits and adding the gyro Z L
+    return (float)gyroz / GyroAxis_Sensitive;
+    uint16_t gyro_ZH, gyro_ZL, gyro_Z;
 }
 
 float roll_func(float ax, float ay, float az)
@@ -135,17 +135,47 @@ void slave_write(uint8_t slave_add, uint8_t reg_add, uint8_t data)              
     i2c_cmd_link_delete(write);
 }
 
-uint8_t slave_read(uint8_t slave_add, uint8_t reg_add)          //read from slave
+void slave_read(uint8_t slave_addr, uint8_t data, uint8_t *buf, uint32_t len) 
 {
+    i2c_cmd_handle_t cmd = i2c_cmd_link_create();
+    i2c_master_start(cmd);
+    i2c_master_write_byte(cmd, slave_addr << 1, 1);
+    i2c_master_write_byte(cmd, data, 1);
+    i2c_master_stop(cmd);
+    int ret = i2c_master_cmd_begin(I2C_NUM_0, cmd, 10);
+    i2c_cmd_link_delete(cmd);
+
+
+    cmd = i2c_cmd_link_create();
+    i2c_master_start(cmd);
+    i2c_master_write_byte(cmd, slave_addr << 1 | 1, 1);
+    while(len) {
+        i2c_master_read_byte(cmd, buf, (len == 1));
+        buf++;
+        len--;
+    }
+    i2c_master_stop(cmd);
+    ret = i2c_master_cmd_begin(I2C_NUM_0, cmd, 10);
+    i2c_cmd_link_delete(cmd);
+}
+
+uint8_t slave_read_byte(uint8_t slave_addr, uint8_t reg) 
+{
+    i2c_cmd_handle_t cmd = i2c_cmd_link_create();
+    i2c_master_start(cmd);
+    i2c_master_write_byte(cmd, slave_addr << 1, 1);
+    i2c_master_write_byte(cmd, reg, 1);
+    i2c_master_stop(cmd);
+    i2c_master_cmd_begin(I2C_NUM_0, cmd, 10);
+    i2c_cmd_link_delete(cmd);
+
     uint8_t buf;
-    i2c_cmd_handle_t read = i2c_cmd_link_create();
-    i2c_master_start(read);
-    i2c_master_write_byte(read, (slave_add << 1) | I2C_MASTER_WRITE, 1);
-    i2c_master_write_byte(read, reg_add, 1);
-    i2c_master_write_byte(read, (slave_add << 1) | I2C_MASTER_READ, 1);
-    i2c_master_read_byte(read, &buf, 1);
-    i2c_master_stop(read);
-    i2c_master_cmd_begin(I2C_NUM_0,read,10);
-    i2c_cmd_link_delete(read);
+    cmd = i2c_cmd_link_create();
+    i2c_master_start(cmd);
+    i2c_master_write_byte(cmd, slave_addr << 1 | 1, 1);
+    i2c_master_read_byte(cmd, &buf, 1);
+    i2c_master_stop(cmd);
+    i2c_master_cmd_begin(I2C_NUM_0, cmd, 10);
+    i2c_cmd_link_delete(cmd);
     return buf;
 }

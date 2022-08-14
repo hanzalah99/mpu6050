@@ -36,4 +36,5 @@ float *quaternions(float roll, float pitch, float yaw);
 
 void i2c_init();
 void slave_write(uint8_t slave_add, uint8_t reg_add, uint8_t data);
-uint8_t slave_read(uint8_t slave_add, uint8_t reg_add);
+void slave_read(uint8_t slave_addr, uint8_t data, uint8_t *buf, uint32_t len);
+uint8_t slave_read_byte(uint8_t slave_addr, uint8_t reg);
