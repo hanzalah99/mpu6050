@@ -96,3 +96,5 @@
 21834	22691	6806660767318336	bootloader.elf	9af4ee3ec34ed38
 22691	24137	6806660781849440	.bin_timestamp	591a6ce820216d2a
 24137	25058	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	7c30efbeb1d85840
+24	661	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	7c30efbeb1d85840
+26	612	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	7c30efbeb1d85840

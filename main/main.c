@@ -24,17 +24,17 @@ void app_main(void)
     ax = get_accX();
     ay = get_accY();
     az = get_accZ();
-    //printf("ax : %f ", ax);
-    //printf("ay : %f ", ay);
-    //printf("az : %f ", az);
+    printf("ax : %f ", ax);
+    printf("ay : %f ", ay);
+    printf("az : %f ", az);
 
     // get Gyroscope raw data
     gx = get_gyro_X();
     gy = get_gyro_Y();
     gz = get_gyro_Z();
-    //printf("gx : %f \n", gx);
-    //printf("gy : %f \n", gy);
-    //printf("gz : %f \n", gz);
+    printf("gx : %f \n", gx);
+    printf("gy : %f \n", gy);
+    printf("gz : %f \n", gz);
 
     // roll, pitch and yaw are the euler angles
     roll = roll_func(ax, ay, az);
@@ -58,3 +58,4 @@ void app_main(void)
         //}
     }
     }
+    
